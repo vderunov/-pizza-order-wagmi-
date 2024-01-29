@@ -17,4 +17,6 @@ Wagmi's abundant hooks highlight the elegance of our application based on React.
 
 **Wagmi**: A lightweight library that introduces reactivity to Ethereum-based applications, simplifying the process of tracking state changes and reactive data updates.
 
-test
+## Note
+
+For RainbowKit compatibility with Wagmi v2, we use RainbowKit beta version (^2.0.0-beta.2).
