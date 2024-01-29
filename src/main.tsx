@@ -1,17 +1,27 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Buffer } from "buffer";
+
 import React from "react";
+
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import ReactDOM from "react-dom/client";
 import { WagmiProvider } from "wagmi";
 
-// import "@rainbow-me/rainbowkit/styles.css";
+import "@rainbow-me/rainbowkit/styles.css";
 
-import App from "./App.tsx";
-import { config } from "./wagmi.ts";
+import App, { config } from "./App.tsx";
 
-import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
+import "beercss";
 
-globalThis.Buffer = Buffer;
+declare global {
+  interface Global {
+    Buffer: typeof Buffer;
+  }
+}
+
+(globalThis as any as Global).Buffer = Buffer;
 
 const queryClient = new QueryClient();
 
@@ -19,7 +29,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <RainbowKitProvider>
+          <App />
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   </React.StrictMode>,
